@@ -1,7 +1,7 @@
 import React, { useCallback, useRef } from 'react';
 
 interface FormProps {
-  submit(event: React.FormEvent<HTMLFormElement>): void
+  submit(): void
   setValueList(list: string[]): void
   valueList: string[]
 }
@@ -29,12 +29,14 @@ export const Form = ({ submit, setValueList, valueList }: FormProps) => {
     setValueList(filterArray)
   }
 
-  function handleAddAnother() {
+  function handleAddAnother(event: React.FormEvent<HTMLFormElement>) {
+    event.preventDefault()
+
     setValueList([...valueList, ''])
   }
 
   return (
-    <form className="mt-8" action="#" onSubmit={submit}>
+    <form className="mt-8" action="#" onSubmit={handleAddAnother}>
       <div className="rounded-md">
         {valueList.map((value, index) => (
           <div key={index} className="flex mb-3">
@@ -48,12 +50,12 @@ export const Form = ({ submit, setValueList, valueList }: FormProps) => {
         ))}
       </div>
       <div className="mt-6">
-        <button onClick={handleAddAnother} type="button" className="group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm leading-5 font-medium rounded-md text-indigo-700 bg-indigo-100 hover:text-indigo-600 hover:bg-indigo-50 focus:outline-none focus:border-indigo-700 focus:shadow-outline-indigo active:bg-indigo-700 transition duration-150 ease-in-out">
+        <button type="submit" className="group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm leading-5 font-medium rounded-md text-indigo-700 bg-indigo-100 hover:text-indigo-600 hover:bg-indigo-50 focus:outline-none focus:border-indigo-700 focus:shadow-outline-indigo active:bg-indigo-700 transition duration-150 ease-in-out">
           Add extra field
           </button>
       </div>
       <div className="mt-2">
-        <button type="submit" className="group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm leading-5 font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-500 focus:outline-none focus:border-indigo-700 focus:shadow-outline-indigo active:bg-indigo-700 transition duration-150 ease-in-out">
+        <button onClick={submit} type="button" className="group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm leading-5 font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-500 focus:outline-none focus:border-indigo-700 focus:shadow-outline-indigo active:bg-indigo-700 transition duration-150 ease-in-out">
           Randomise
           </button>
       </div>

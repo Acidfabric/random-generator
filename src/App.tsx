@@ -17,16 +17,14 @@ function App() {
     setTableData(array.filter(Boolean))
   }
 
-  function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
-    event.preventDefault()
-
+  function handleSubmit() {
     shuffleArray()
     setIsTableVisible(true)
   }
 
   function handleGoBack() {
-    // setTableData([''])
-    // setValueList([''])
+    setTableData([''])
+    setValueList([''])
     setIsTableVisible(false)
   }
 
