@@ -19,7 +19,8 @@
   },
   "scripts": {
     "start": "npm run watch:css && react-scripts start",
-    "build": "rm -r _static 2>/dev/null; npm run build:css && react-scripts build && mv build _static",
+    "build": "npm run build:css && react-scripts build",
+    "build:do": "rm -r _static 2>/dev/null; npm run build:css && react-scripts build && mv build _static",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "build:css": "postcss src/assets/tailwind.css -o src/assets/main.css",
